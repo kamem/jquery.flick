@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=0">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta http-equiv="Content-Script-Type" content="text/javascript" />
+<link href="css/import.css" rel="stylesheet" type="text/css">
+<script src="js/jquery.js"></script>
+<script src="js/common.js"></script>
+<script src="js/flick.js"></script>
+
+
+	
+<script type="text/javascript">
+$(function(){
+	$("#flick").flick();
+	$("#flick2").flick({timer : 2000});
+	$("#flick3").flick();
+});
+</script>
+
+<title>iPhone・Android・PCでフリックを実装できるjQueryプラグイン「サンプル」 - Develo.org</title>
+</head>
+<body>
+<div id="content">
+<h1>iPhone・Android・PCでフリックを実装できるjQueryプラグイン「サンプル」 - Develo.org</h1>
+<div class="section" id="flick">
+	<h2>ノーマル</h2>
+
+	<ul class="flickNav">
+		<li><a href="#content01"></a></li>
+		<li><a href="#content02"></a></li>
+		<li><a href="#content03"></a></li>
+		<li><a href="#content04"></a></li>
+		<li><a href="#content05"></a></li>
+		<li><a href="#content06"></a></li>
+		<li><a href="#content07"></a></li>
+		<li><a href="#content08"></a></li>
+		<li><a href="#content09"></a></li>
+		<li><a href="#content10"></a></li>
+	</ul>
+	
+	<div class="container">
+		<div class="itemBox">
+			<div id="content01" class="item">
+				<figure>1</figure>
+			</div>
+			<div id="content02" class="item">
+				<figure>2</figure>
+			</div>
+			<div id="content03" class="item">
+				<figure>3</figure>
+			</div>
+			<div id="content04" class="item">
+				<figure>4</figure>
+			</div>
+			<div id="content05" class="item">
+				<figure>5</figure>
+			</div>
+			<div id="content06" class="item">
+				<figure>6</figure>
+			</div>
+			<div id="content07" class="item">
+				<figure>7</figure>
+			</div>
+			<div id="content08" class="item">
+				<figure>8</figure>
+			</div>
+			<div id="content09" class="item">
+				<figure>9</figure>
+			</div>
+			<div id="content10" class="item">
+				<figure>10</figure>
+			</div>
+		</div>
+	</div>
+	
+	<ul class="next_prev">
+		<li class="next">Next</li>
+		<li class="prev">Prev</li>
+	</ul>
+</div>
+
+<div class="section" id="flick2">
+	<h2>タイマー指定（timer : 2000）</h2>
+
+	<ul class="flickNav">
+		<li><a href="#contentB01"></a></li>
+		<li><a href="#contentB02"></a></li>
+		<li><a href="#contentB03"></a></li>
+		<li><a href="#contentB04"></a></li>
+		<li><a href="#contentB05"></a></li>
+		<li><a href="#contentB06"></a></li>
+		<li><a href="#contentB07"></a></li>
+		<li><a href="#contentB08"></a></li>
+		<li><a href="#contentB09"></a></li>
+		<li><a href="#contentB10"></a></li>
+	</ul>
+	
+	<div class="container">
+		<div class="itemBox">
+			<div id="contentB01" class="item">
+				<figure>1</figure>
+			</div>
+			<div id="contentB02" class="item">
+				<figure>2</figure>
+			</div>
+			<div id="contentB03" class="item">
+				<figure>3</figure>
+			</div>
+			<div id="contentB04" class="item">
+				<figure>4</figure>
+			</div>
+			<div id="contentB05" class="item">
+				<figure>5</figure>
+			</div>
+			<div id="contentB06" class="item">
+				<figure>6</figure>
+			</div>
+			<div id="contentB07" class="item">
+				<figure>7</figure>
+			</div>
+			<div id="contentB08" class="item">
+				<figure>8</figure>
+			</div>
+			<div id="contentB09" class="item">
+				<figure>9</figure>
+			</div>
+			<div id="contentB10" class="item">
+				<figure>10</figure>
+			</div>
+		</div>
+	</div>
+	
+	<ul class="next_prev">
+		<li class="next">Next</li>
+		<li class="prev">Prev</li>
+	</ul>
+</div>
+
+
+<div class="section" id="flick3">
+	<h2>画像がある場合はimgに「pointer-events: none;」</h2>
+
+	<ul class="flickNav">
+		<li><a href="#contentC01"></a></li>
+		<li><a href="#contentC02"></a></li>
+		<li><a href="#contentC03"></a></li>
+		<li><a href="#contentC04"></a></li>
+		<li><a href="#contentC05"></a></li>
+	</ul>
+	
+	<div class="container">
+		<div class="itemBox">
+			<div id="contentC01" class="item">
+				<figure><img src="http://farm7.staticflickr.com/6224/6269217845_cc4912d87c_m.jpg"></figure>
+			</div>
+			<div id="contentC02" class="item">
+				<figure><img src="http://farm7.staticflickr.com/6159/6269745820_5ce5d95a11_m.jpg"></figure>
+			</div>
+			<div id="contentC03" class="item">
+				<figure><img src="http://farm7.staticflickr.com/6112/6249604954_febe3fae4b_m.jpg"></figure>
+			</div>
+			<div id="contentC04" class="item">
+				<figure><img src="http://farm6.staticflickr.com/5053/5505894657_9db02c30a4_m.jpg"></figure>
+			</div>
+			<div id="contentC05" class="item">
+				<figure><img src="http://farm6.staticflickr.com/5057/5505783379_0d614b5be3_m.jpg"></figure>
+			</div>
+		</div>
+	</div>
+	
+	<ul class="next_prev">
+		<li class="next">Next</li>
+		<li class="prev">Prev</li>
+	</ul>
+</div>
+</div>
+</body>
+</html>

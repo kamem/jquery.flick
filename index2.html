@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=0">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta http-equiv="Content-Script-Type" content="text/javascript" />
+<link href="css/import2.css" rel="stylesheet" type="text/css">
+<script src="js/jquery.js"></script>
+<script src="js/common.js"></script>
+<script src="js/flick.js"></script>
+
+<script type="text/javascript">
+
+$(function(){
+	var $container = $('.container','#flick');
+	var $item = $('.item','#flick');
+	$(window).bind(('orientationchange resize load'), function(){
+		var windowWidth = (!(window.innerWidth)) ? document.documentElement.clientWidth : window.innerWidth;
+		
+		$item.css({width : windowWidth});
+		$container.css({width : windowWidth})
+	});
+
+	$("#flick").flick({});
+});
+</script>
+
+<title>iPhone・Android・PCでフリックを実装できるjQueryプラグイン「サンプル（ウィンドウサイズにあわせてフリックコンテンツサイズを変更）」 - Develo.org</title>
+</head>
+<body>
+<div id="content">
+<div id="flick">
+	<ul class="flickNav">
+		<li><a href="#content01"></a></li>
+		<li><a href="#content02"></a></li>
+		<li><a href="#content03"></a></li>
+		<li><a href="#content04"></a></li>
+		<li><a href="#content05"></a></li>
+		<li><a href="#content06"></a></li>
+		<li><a href="#content07"></a></li>
+		<li><a href="#content08"></a></li>
+		<li><a href="#content09"></a></li>
+		<li><a href="#content10"></a></li>
+	</ul>
+	
+	<div class="container">
+		<div class="itemBox">
+			<div id="content01" class="item">
+				<figure>1</figure>
+			</div>
+			<div id="content02" class="item">
+				<figure>2</figure>
+			</div>
+			<div id="content03" class="item">
+				<figure>3</figure>
+			</div>
+			<div id="content04" class="item">
+				<figure>4</figure>
+			</div>
+			<div id="content05" class="item">
+				<figure>5</figure>
+			</div>
+			<div id="content06" class="item">
+				<figure>6</figure>
+			</div>
+			<div id="content07" class="item">
+				<figure>7</figure>
+			</div>
+			<div id="content08" class="item">
+				<figure>8</figure>
+			</div>
+			<div id="content09" class="item">
+				<figure>9</figure>
+			</div>
+			<div id="content10" class="item">
+				<figure>10</figure>
+			</div>
+		</div>
+	</div>
+	
+	<ul class="next_prev">
+		<li class="next">Next</li>
+		<li class="prev">Prev</li>
+	</ul>
+</div>
+</div>
+</body>
+</html>
