@@ -1,0 +1,7 @@
+{
+    "name": "jQuery flick",
+    "description": "iPhone,Android,PCで使えるフリック操作が実現できるjQuery Plugin",
+    "options": {
+        "outdir": "yuidoc/"
+    }
+}

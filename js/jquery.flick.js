@@ -1,37 +1,37 @@
-/*
- * jQuery flick
+/**
+ *	jQuery flick.
+ *	jQuery required.
+ *	jQuery Easing Plugin extends this Plugin.
+ *	
+ *	* Copyright 2014 (c) kamem
+ *	* http://develo.org/
+ *	* Licensed Under the MIT.
+ *	 
+ *	Date: 2014.1.19
  *
- * jQuery required.
+ *	* contentNum : 0 スタートが何番目から始まるか
+ *	* centerPosition :  true or false フリック操作をした時にコンテンツの位置までスクロールするか
+ *	* speed: 200 フリック操作を話した時のスピード（pcの場合）
+ 	transitionが使えるブラウザの場合には cssで指定した値が有効（transition: transform .2s ease-out;）
+ *	* timer: false コンテンツをタイマーで回すか（回す場合は時間を指定、回さない場合はfalse）
  *
- * Copyright 2012 (c) kamem
- * http://develo.org/
- * Licensed Under the MIT.
- *
- * Date: 2012.4.8
+ * @class flick
 */
 
 (function($,global){
-/*-------------------------------------------------------------------------------------
-	ウィンドウサイズ
--------------------------------------------------------------------------------------*/
-var windowWidth = (!(window.innerWidth)) ? document.documentElement.clientWidth : window.innerWidth;
-var windowHeight = (!(window.innerHeight)) ?  document.documentElement.clientHeight : window.innerHeight;
+//ウィンドウサイズ
+var windowWidth = (!(window.innerWidth)) ? document.documentElement.clientWidth : window.innerWidth,
+	windowHeight = (!(window.innerHeight)) ?  document.documentElement.clientHeight : window.innerHeight;
 
-/*-------------------------------------------------------------------------------------
-	ユーザーエージェントにより判別
--------------------------------------------------------------------------------------*/
+//ユーザーエージェントにより判別
 var userAgent = navigator.userAgent;
-
 userAgent.match(/iPhone OS (\w+){1,3}/g);
 userAgent.match(/CPU OS (\w+){1,3}/g);
-/*
- * iPhone iPad のiOSを判別
- */
+
+//iPhone iPad のiOSを判別
 var osVar=(RegExp.$1.replace(/_/g, '')+'00').slice(0,3);
 
-/*
- * ユーザーエージェント判別 配列
- */
+//ユーザーエージェント判別 配列
 var ua = {
 	iPhone : userAgent.search(/iPhone/) !== -1,
 	iPad : userAgent.search(/iPad/) !== -1,
@@ -45,20 +45,15 @@ var ua = {
 	(((userAgent.search(/Android/) !== -1) && (userAgent.search(/Mobile/) !== -1)) && (userAgent.search(/SC-01C/) == -1)) || 
 	((userAgent.search(/Android/) !== -1) && ((userAgent.search(/Mobile/) == -1) || (userAgent.search(/SC-01C/) !== -1)))
 	)
-}
-/*
- * モバイル判別
- */
+};
+
+//モバイル判別
 var mobile = ua.iPhone || ua.iPad || ua.Android || ua.AndroidTab;
 
-
-/*
- * アニメーション終了 判別
- */
+//アニメーション種類終了 判別
 var type = "transition";
-/*
- * イベント判別
- */
+
+//イベント判別
 var eventType = {
 	touchStart: mobile ? 'touchstart' : 'mousedown',
 	touchEnd: mobile ? 'touchend' : 'mouseup',
@@ -69,9 +64,7 @@ var eventType = {
 (!(userAgent.toLowerCase().indexOf("msie 10.0") == -1)) ? ((type == "transition") ? "MSTransitionEnd" : "MSAnimationend") : ""
 };
 
-/*
- * CSS ブラウザによってのベンダープレフィックス振り分け
- */
+//CSS ブラウザによってのベンダープレフィックス振り分け
 var cssPrefix = 
 (!(userAgent.toLowerCase().indexOf("webkit") == -1)) ? '-webkit-' : 
 (!(userAgent.toLowerCase().indexOf("gecko") == -1)) ? '-moz-' :
@@ -80,15 +73,19 @@ var cssPrefix =
 
 var cssTransition = cssPrefix + 'transition';
 var cssTransform = cssPrefix + 'transform';
+
+//translateの設定（webkitの場合 translate3d）（firefoxの場合 translate）
 var cssTranslate = {
 	prefix : (!(userAgent.toLowerCase().indexOf("webkit") == -1)) ? 'translate3d(' : 'translate(',
 	suffix : (!(userAgent.toLowerCase().indexOf("webkit") == -1)) ? 'px,0,0)' : 'px,0)'
 }
-
-/*
- * translateの設定
- * webkitの場合 translate3d
- * firefoxの場合 translate
+ 
+/**
+ *	横移動の値をcss3（transform）の状況をみてそれに合わせた形で値を返す
+ *
+ *	@method getCssTranslate
+ *	@param {Number} モーションの配列
+ *	@return {String} 横移動の値をブラウザの対応状況に合わせて返す
  */
 function getCssTranslate(moveX) {	
 	if(css3) {
@@ -99,9 +96,7 @@ function getCssTranslate(moveX) {
 	}
 }
 
-/*-------------------------------------------------------------------------------------
-	flick プラグイン
--------------------------------------------------------------------------------------*/
+
 $.fn.flick = function(options) {
 
 	options = $['extend']({
@@ -111,9 +106,6 @@ $.fn.flick = function(options) {
 		timer: false
 	}, options);
 
-	//----------------------------------------
-	//	初期設定
-	//----------------------------------------
 	var $content = this,
 	$container = $('.container',this),
 	$itemBox = $('.itemBox',this),
@@ -142,7 +134,6 @@ $.fn.flick = function(options) {
 	isMoving = false;
 	$itemBox.css({width : $item.eq(0).width() * $item.length});
 	$itemBox.css(cssTransform,'translate(0,0)');
-
 
 	//----------------------------------------
 	//	タイマーで自動で回す
@@ -197,8 +188,6 @@ $.fn.flick = function(options) {
 			$itemBox.removeClass('moving');
 			$itemBox.css(cssTransform, getCssTranslate(containerBaseX + startLeft));
         }
-		
-		//console.log(translateX + '+' + containerOffsetLeft + '-' + containerBaseX + '=' + (translateX - containerOffsetLeft - containerBaseX))
 	});
 
 	//----------------------------------------
@@ -266,13 +255,6 @@ $.fn.flick = function(options) {
 		
         containerOffsetLeft = $container.offset().left;
 		containerBaseX = ($container.innerWidth() - $item.eq(0).width()) / 2;
-		
-		/* ウィンドウエリアいっぱいに広げる場合
-		windowWidth = (!(window.innerWidth)) ? document.documentElement.clientWidth : window.innerWidth;
-		if($container.width() > windowWidth) {
-			$container.css({width : windowWidth})
-		}
-		*/
 
 		if(!css3) {
 			$itemBox.queue([]).stop()
@@ -358,9 +340,10 @@ $.fn.flick = function(options) {
 		return false;
 	});
 
-	/*
-	 * translateのxの値 取得
-	 * firefoxとwebkitで取得の仕方が違うようです。
+	/**
+	 *	translateのxの値 取得（firefoxとwebkitで取得の仕方が違うようです。）
+	 *	@method getTranslateX
+	 *	@return {Number} 	translateのxの値
 	 */
 	function getTranslateX() {
 		if(css3) {
