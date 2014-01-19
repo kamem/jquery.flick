@@ -7,7 +7,7 @@
  *	* http://develo.org/
  *	* Licensed Under the MIT.
  *	 
- *	Date: 2014.1.19
+ *	Date: 2014.01.19
  *
  *	* contentNum : 0 スタートが何番目から始まるか
  *	* centerPosition :  true or false フリック操作をした時にコンテンツの位置までスクロールするか
